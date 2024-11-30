@@ -10,19 +10,23 @@ namespace SyntaxHighlingting.CodeElements
 
     public class MyText : CodeElement
     {
-        public MyText(string content) : base(content) { }
+        public MyText(string content)
+        {
+            Content = content;
+            _setColor(ConsoleColor.White);
+        }
 
         public override void Accept(IVisitor visitor)
         {
             visitor.VisitCodeElement(this);
         }
-        public void VisitText(MyText? text)
+      /*  public void VisitText(MyText? text)
         {
             if (text == null)
                 throw new ArgumentNullException(nameof(text), "Text cannot be null.");
             _setColor(ConsoleColor.White);
             Console.Write(text.Content);
 
-        }
+        }*/
     }
 }

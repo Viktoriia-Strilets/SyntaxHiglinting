@@ -10,19 +10,23 @@ namespace SyntaxHighlingting.CodeElements
 
     public class Keyword : CodeElement
     {
-        public Keyword(string content) : base(content) { }
+        public Keyword(string content)
+        {
+            Content = content;
+            _setColor(ConsoleColor.Blue);
+        }
 
         public override void Accept(IVisitor visitor)
         {
             visitor.VisitCodeElement(this);
         }
 
-        public void VisitKeyword(Keyword? keyword)
+       /* public void VisitKeyword(Keyword? keyword)
         {
             if (keyword == null)
                 throw new ArgumentNullException(nameof(keyword), "Keyword cannot be null.");
             _setColor(ConsoleColor.Blue);
             Console.Write(keyword.Content);
-        }
+        }*/
     }
 }

@@ -10,19 +10,22 @@ namespace SyntaxHighlingting.CodeElements
 
     public class Comment : CodeElement
     {
-        public Comment(string content) : base(content) { }
+        public Comment(string content) {
+            Content = content;
+            _setColor(ConsoleColor.Green);
+        }
         
         public override void Accept(IVisitor visitor)
         {
             visitor.VisitCodeElement(this);
         }
-       public void VisitComment(Comment? comment)
+       /*public void VisitComment(Comment? comment)
         {
             if (comment == null)
                 throw new ArgumentNullException(nameof(comment), "Comment cannot be null.");
             _setColor(ConsoleColor.Green);
             Console.Write(comment.Content);
 
-        }
+        }*/
     }
 }
