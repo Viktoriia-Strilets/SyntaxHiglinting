@@ -11,21 +11,32 @@ namespace SyntaxHighlingting.Visitors
 {
     public class StringLiteralVisitor : IVisitor
     {
-        public CodeElement VisitCodeElement(CodeElement stringLiteral)
+        public List<CodeElement> VisitCodeElement(CodeElement stringLiteral)
         {
-            var regex = new Regex(@"(\s+|""[^""]*""|\w+|.)");
-
-            foreach (Match match in regex.Matches(stringLiteral.Content))
+            if (stringLiteral is StringLiteral)
             {
-                var token = match.Value;
+                var elements = new List<CodeElement>();
+                var regex = new Regex(@"(\s+|""[^""]*""|\w+|.)");
 
-                if (token.StartsWith("\"") && token.EndsWith("\""))
+                foreach (Match match in regex.Matches(stringLiteral.Content))
                 {
-                    return new StringLiteral(token);
-                }
+                    var token = match.Value;
 
+                    if (token.StartsWith("\"") && token.EndsWith("\""))
+                    {
+                        elements.Add(new StringLiteral(token));
+                        Console.Write(token);
+                    }
+                    else
+                    {
+                        elements.Add(new MyText(token));
+                        Console.Write(token);
+                    }
+                }
+                return elements;
             }
-            return new MyText(stringLiteral.Content);
+            return null;
         }
     }
 }
+

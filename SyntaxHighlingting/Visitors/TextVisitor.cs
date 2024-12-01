@@ -12,23 +12,34 @@ namespace SyntaxHighlingting.Visitors
 {
     public class TextVisitor : IVisitor
     {
-
-        public CodeElement VisitCodeElement(CodeElement text)
+        
+        public List<CodeElement> VisitCodeElement(CodeElement text)
         {
-            var regex = new Regex(@"(\s+|\w+|.)");
-
-            foreach (Match match in regex.Matches(text.Content))
+            if (text is MyText)
             {
-                var token = match.Value;
+                var elements = new List<CodeElement>();
+                var regex = new Regex(@"(\s+|\w+|.)");
 
-                if (string.IsNullOrWhiteSpace(token))
+                foreach (Match match in regex.Matches(text.Content))
                 {
-                    return new MyText(token);
+                    var token = match.Value;
+
+                    if (string.IsNullOrWhiteSpace(token))
+                    {
+                        elements.Add(new MyText(token));
+                        Console.Write(token);
+                    }
+                    else
+                    {
+                        elements.Add(new MyText(token));
+                        Console.Write(token);
+                    }
                 }
-                
+                return elements;
             }
-            return new MyText(text.Content);
+            return null;
         }
     
     }
 }
+

@@ -10,9 +10,8 @@ namespace SyntaxHighlingting.CodeElements
 
     public class Keyword : CodeElement
     {
-        public Keyword(string content)
+        public Keyword(string content) : base(content, color => Console.ForegroundColor = color)
         {
-            Content = content;
             _setColor(ConsoleColor.Blue);
         }
 
@@ -21,12 +20,7 @@ namespace SyntaxHighlingting.CodeElements
             visitor.VisitCodeElement(this);
         }
 
-       /* public void VisitKeyword(Keyword? keyword)
-        {
-            if (keyword == null)
-                throw new ArgumentNullException(nameof(keyword), "Keyword cannot be null.");
-            _setColor(ConsoleColor.Blue);
-            Console.Write(keyword.Content);
-        }*/
+       
     }
 }
+

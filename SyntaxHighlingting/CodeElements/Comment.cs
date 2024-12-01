@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using SyntaxHighlingting.Interfaces;
 
 namespace SyntaxHighlingting.CodeElements
@@ -10,22 +11,16 @@ namespace SyntaxHighlingting.CodeElements
 
     public class Comment : CodeElement
     {
-        public Comment(string content) {
-            Content = content;
+        public Comment(string content) : base(content, color => Console.ForegroundColor = color)
+        {
             _setColor(ConsoleColor.Green);
         }
-        
+
         public override void Accept(IVisitor visitor)
         {
             visitor.VisitCodeElement(this);
         }
-       /*public void VisitComment(Comment? comment)
-        {
-            if (comment == null)
-                throw new ArgumentNullException(nameof(comment), "Comment cannot be null.");
-            _setColor(ConsoleColor.Green);
-            Console.Write(comment.Content);
-
-        }*/
+       
     }
 }
+

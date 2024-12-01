@@ -12,21 +12,34 @@ namespace SyntaxHighlingting.Visitors
 {
     public class CommentVisitor : IVisitor
     {
-        public CodeElement VisitCodeElement(CodeElement comment)
+        public List<CodeElement> VisitCodeElement(CodeElement comment)
         {
-            var regex = new Regex(@"(\s+|//.*|/\*[\s\S]*?\*/|\w+|.)");
-
-            foreach (Match match in regex.Matches(comment.Content))
+            if (comment is Comment)
             {
-                var token = match.Value;
+                var elements = new List<CodeElement>();
+                var regex = new Regex(@"(\s+|//.*|/\*[\s\S]*?\*/|\w+|.)");
 
-                if (token.StartsWith("//") || (token.StartsWith("/*") && token.EndsWith("*/")))
+                foreach (Match match in regex.Matches(comment.Content))
                 {
-                    return new Comment(token);
-                }
+                    var token = match.Value;
 
+                    if (token.StartsWith("//") || (token.StartsWith("/*") && token.EndsWith("*/")))
+                    {
+                        elements.Add(new Comment(token));
+                        Console.Write(token);
+                    }
+                    else
+                    {                        
+                        elements.Add(new MyText(token));
+                        Console.Write(token);
+                    }
+
+                }
+            
+                return elements;
             }
-            return new MyText(comment.Content);
+            return null;
         }
     }
 }
+

@@ -14,9 +14,9 @@ namespace SyntaxHighlingting.CodeElements
         
         public abstract void Accept(IVisitor visitor);
 
-        protected readonly Action<ConsoleColor> _setColor;
+        protected Action<ConsoleColor> _setColor { get; set; }
 
-        public CodeElement(string? content, Action<ConsoleColor>? setColor = null)
+        public CodeElement(string content, Action<ConsoleColor> setColor = null)
         {
             Content = content ?? string.Empty;
             _setColor = setColor ?? (color => Console.ForegroundColor = color);
