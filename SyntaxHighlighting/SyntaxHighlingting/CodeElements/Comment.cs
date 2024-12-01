@@ -5,7 +5,6 @@ namespace SyntaxHighlingting.CodeElements{
         public Comment(string content);
 
         public override void Accept(IVisitor visitor);
-        
-        public void VisitComment(Comment? comment);
+    
     }
 }

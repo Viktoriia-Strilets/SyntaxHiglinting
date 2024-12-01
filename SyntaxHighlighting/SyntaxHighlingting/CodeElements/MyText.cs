@@ -6,6 +6,5 @@ namespace SyntaxHighlingting.CodeElements{
 
         public override void Accept(IVisitor visitor);
         
-        public void VisitText(MyText? text);
     }
 }

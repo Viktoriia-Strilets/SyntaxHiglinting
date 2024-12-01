@@ -5,6 +5,5 @@ namespace SyntaxHighlingting.CodeElements{
 
         public override void Accept(IVisitor visitor);
 
-        public void VisitKeyword(Keyword? keyword);   
     }
 }
