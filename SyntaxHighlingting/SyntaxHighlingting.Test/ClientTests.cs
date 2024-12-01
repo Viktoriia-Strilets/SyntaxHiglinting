@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using SyntaxHighlingting.Interfaces;
 using SyntaxHighlingting.Visitors;
 
-namespace SyntaxHighlingtingTest
+namespace SyntaxHighlingting.Test
 {
     public class CodeElementVisitorTests
     {
