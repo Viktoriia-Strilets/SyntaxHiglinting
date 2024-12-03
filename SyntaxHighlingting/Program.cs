@@ -31,13 +31,11 @@ namespace SyntaxHighlingtingProgram
             var keywordVisitor = new KeywordVisitor();
             var stringLiteralVisitor = new StringLiteralVisitor();
             var textVisit = new TextVisitor();
-            var codeElementVisitor = new CodeElementVisitor();
 
             Client.ClientCode(components, commentVisitor);
             Client.ClientCode(components, keywordVisitor);
             Client.ClientCode(components, stringLiteralVisitor);
             Client.ClientCode(components, textVisit);
-            Client.ClientCode(components, codeElementVisitor);
 
             Console.WriteLine();
             Console.ReadLine();
