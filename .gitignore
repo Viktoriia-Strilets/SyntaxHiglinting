@@ -31,11 +31,11 @@ bld/
 [Oo]bj/
 [Ll]og/
 [Ll]ogs/
-FactoryMethod.UnitTests/bin/
-FactoryMethod.UnitTests/obj/
+SyntaxHiglinting/bin/
+SyntaxHiglinting/obj/
 
-FactoryMethodWithTests/bin/
-FactoryMethodWithTests/obj/
+SyntaxHiglintingTest/bin/
+SyntaxHiglintingTest/obj/
 
 /Puml
 
