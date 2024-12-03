@@ -1,0 +1,70 @@
+@startuml diagram
+abstract class CodeElement {
+    - Content: string
+    - _setColor: Action<ConsoleColor>
+    + CodeElement(content: string, setColor: Action<ConsoleColor>)
+    + Accept(visitor: IVisitor)
+}
+
+class Comment {
+    + Comment(content: string)
+    + Accept(visitor: IVisitor)
+}
+
+class Keyword {
+    + Keyword(content: string)
+    + Accept(visitor: IVisitor)
+}
+
+class MyText {
+    + MyText(content: string)
+    + Accept(visitor: IVisitor)
+}
+
+class StringLiteral {
+    + StringLiteral(content: string)
+    + Accept(visitor: IVisitor)
+}
+
+interface IVisitor {
+    + VisitCodeElement(codeElement: CodeElement): List<CodeElement>
+}
+
+class CommentVisitor {
+    + VisitCodeElement(comment: Comment): List<CodeElement>
+}
+
+class KeywordVisitor {
+    + VisitCodeElement(keyword: Keyword): List<CodeElement>
+}
+
+class StringLiteralVisitor {
+    + VisitCodeElement(stringLiteral: StringLiteral): List<CodeElement>
+}
+
+class TextVisitor {
+    + VisitCodeElement(text: MyText): List<CodeElement>
+}
+
+class Client{
+    +ClientCode(components: List<ICodeElement> ,visitor: IVisitor )
+}
+
+CodeElement <|-- Comment
+CodeElement <|-- Keyword
+CodeElement <|-- MyText
+CodeElement <|-- StringLiteral
+IVisitor <|.. CommentVisitor
+IVisitor <|.. KeywordVisitor
+IVisitor <|.. StringLiteralVisitor
+IVisitor <|.. TextVisitor
+
+CodeElement <|..IVisitor  
+CodeElement <|.. Client 
+CommentVisitor <|.. Client 
+KeywordVisitor <|.. Client 
+StringLiteralVisitor <|.. Client 
+TextVisitor <|.. Client 
+  
+
+@enduml
